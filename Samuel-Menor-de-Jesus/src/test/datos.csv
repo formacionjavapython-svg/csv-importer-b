@@ -1,0 +1,11 @@
+id,tipo,monto,moneda,descripcion
+1,IN,100.50,MXN,Ingreso por venta
+2,OUT,50.75,MXN,Gasto en suministros
+3,IN,200.00,USD,Ingreso por servicios
+4,INVALID_TYPE,150.00,MXN,Descripción inválida
+5,OUT,-30.00,MXN,Gasto negativo
+6,OUT,75.25,EUR,Gasto en consultoría
+7,,120.00,MXN,Falta de ID
+8,IN,abc,MXN,Ingreso con monto inválido
+9,OUT,300.00,MXN,Gasto en publicidad
+10,OUT,150.00,MXN,Gasto en marketing
