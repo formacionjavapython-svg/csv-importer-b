@@ -1,0 +1,4 @@
+id,tipo,monto,moneda,descripcion
+123,suma,100,pesos,pago
+456,resta,200,dolares,cobro
+789,suma,300,euros,pago
