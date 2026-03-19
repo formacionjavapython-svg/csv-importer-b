@@ -1,3 +1,4 @@
 1,IN,500.80,MXN,Venta producto
 2,OUT,60.88,MXN,Compra producto
 3,IN,2000.00,MXN,Servicio
+4,IN,abc,MXN,error

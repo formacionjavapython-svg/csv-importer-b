@@ -34,11 +34,11 @@ public class Importer {
                 }
             }
 
-            System.out.println("------ Resumen de importación ------");
-            System.out.println("Válidos: " + validos);
-            System.out.println("Inválidos: " + invalidos);
-            System.out.println("Total ingresos: " + ingresos);
-            System.out.println("Total egresos: " + egresos);
+            System.out.println(" Resumen de importación:");
+            System.out.println("Registros válidos: " + validos);
+            System.out.println("Registros inválidos: " + invalidos);
+            System.out.println("Total de ingresos (MXN): " + ingresos);
+            System.out.println("Total de egresos (MXN): " + egresos);
 
         } catch (Exception e) {
             System.out.println("Error leer archivo: " + e.getMessage());
