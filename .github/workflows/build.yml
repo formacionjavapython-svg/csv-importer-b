@@ -1,0 +1,54 @@
+name: Java CI/CD Pipeline Seguro
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-test-analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Configurar Java 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Inicializar CodeQL (Seguridad SAST)
+      uses: github/codeql-action/init@v3
+      with:
+        languages: java
+
+    - name: Construcción - Compilar código Java
+      run: javac src/main/java/*.java src/test/java/TestRunner.java
+
+    - name: Pruebas - Ejecutar TestRunner
+      run: |
+        export IMPORT_BASE_DIR=$GITHUB_WORKSPACE/data
+        java -cp src test.java.TestRunner | tee test-report.txt
+
+    - name: Estilo - Ejecutar Checkstyle
+      run: |
+        wget -qO checkstyle.jar https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.12.4/checkstyle-10.12.4-all.jar
+        java -jar checkstyle.jar -c checkstyle.xml src/main/java/*.java
+
+    - name: Subir Artifact del Reporte
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-report
+        path: test-report.txt
+        retention-days: 30
+
+    - name: Ejecutar Análisis de CodeQL
+      uses: github/codeql-action/analyze@v3
