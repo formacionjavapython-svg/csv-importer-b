@@ -1,0 +1,6 @@
+id,type,amount,currency,description
+TX001,IN,1500.50,MXN,Venta de producto A
+TX002,OUT,800.00,MXN,Compra de insumos
+TX003,IN,2300.75,MXN,Servicio de consultoría
+TX004,OUT,invalid,MXN,Registro inválido
+TX005,IN,950.00,MXN,Pago de cliente
