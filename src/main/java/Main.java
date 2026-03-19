@@ -7,6 +7,6 @@ public class Main {
         Importer importer = new Importer();
         importer.leerCSV("data.csv");
 
-        System.out.println("Proceso terminado");
+        System.out.println("Proceso terminado--");
     }
 }
