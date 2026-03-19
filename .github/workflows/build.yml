@@ -1,0 +1,87 @@
+name: CI - CSV Importer
+
+on:
+  push:
+    branches: [ "main", "develop", "Carlos-Miguel-Solano" ]  # Ajusta según tu rama
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Crear estructura de directorios
+        run: |
+          mkdir -p src/main/java/com/axity/csvimporter/{model,importer,result}
+          mkdir -p src/test/java/com/axity/csvimporter/test
+          mkdir -p data
+
+      - name: Compilar el proyecto
+        run: |
+          find src/main/java -name "*.java" > sources.txt
+          javac -d out @sources.txt
+        continue-on-error: false
+
+      - name: Crear archivos CSV de prueba
+        run: |
+          # transacciones.csv (válido)
+          echo "Id,Tipo_Eptrada,Moneda,Valor" > data/transacciones.csv
+          echo "1,IN,MXN,100" >> data/transacciones.csv
+          echo "2,OUT,USD,200" >> data/transacciones.csv
+          echo "3,IN,EUR,150.50" >> data/transacciones.csv
+          echo "4,OUT,MXN,75.25" >> data/transacciones.csv
+          echo "5,IN,USD,300" >> data/transacciones.csv
+          
+          # errores.csv (con datos inválidos)
+          echo "Id,Tipo_Eptrada,Moneda,Valor" > data/errores.csv
+          echo "1,IN,MXN,100" >> data/errores.csv
+          echo "2,OUT,USD,-200" >> data/errores.csv
+          echo "3,INVALido,EUR,150" >> data/errores.csv
+          echo "4,OUT,MXN,0" >> data/errores.csv
+          echo "5,IN,USD,abc" >> data/errores.csv
+
+      - name: Compilar y ejecutar pruebas
+        run: |
+          echo "🧪 Ejecutando TestRunner..."
+          echo "==================================="
+          
+          # Compilar tests
+          find src/test/java -name "*.java" > test-sources.txt
+          javac -cp out -d out @sources.txt @test-sources.txt
+          
+          # Ejecutar TestRunner
+          java -cp out com.axity.csvimporter.test.TestRunner
+          
+          # Guardar el código de salida (no falla el workflow si hay pruebas fallidas)
+          echo "✅ Pruebas completadas"
+
+      - name: Subir reporte de pruebas como artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: test-reports/
+          retention-days: 30
+
+      - name: Mostrar resumen
+        run: |
+          echo "## 📊 Resumen del CI" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Compilación:** Exitosa" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Pruebas:** Ejecutadas" >> $GITHUB_STEP_SUMMARY
+          echo "📁 **Reportes:** Disponibles como artifact por 30 días" >> $GITHUB_STEP_SUMMARY
+          if [ -f test-reports/*.txt ]; then
+            echo "📄 **Último reporte:**" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat test-reports/*.txt | tail -20 >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi

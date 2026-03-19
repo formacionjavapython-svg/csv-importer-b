@@ -1,0 +1,19 @@
+============================================================
+TEST REPORT - CSV Importer
+============================================================
+Fecha: 2026-03-18T19:37:50.882815400
+
+[PASS] Path Traversal - Bloqueo de ../etc/passwd (2ms)
+[PASS] Archivo válido - Conteo de transacciones (49ms)
+[FAIL] Archivo válido - Totales IN por moneda (4ms)
+  FALLÓ: Total IN MXN debe ser 100.00 - Esperado: 100.00, Actual: 100
+[FAIL] Archivo válido - Totales OUT por moneda (3ms)
+  FALLÓ: Total OUT USD debe ser 200.00 - Esperado: 200.00, Actual: 200
+[PASS] Archivo con errores - Conteo válidos/inválidos (4ms)
+[PASS] Archivo con errores - Validación de mensajes (4ms)
+[PASS] Archivo inexistente - Manejo de error (0ms)
+[FAIL] Header inválido - Tolerancia (4ms)
+  FALLÓ: Debe procesar aunque el header sea diferente - Esperado: 1, Actual: 0
+------------------------------------------------------------
+Total: 8 | Pasaron: 5 | Fallaron: 3
+============================================================

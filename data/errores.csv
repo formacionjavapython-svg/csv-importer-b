@@ -1,0 +1,6 @@
+Id,Tipo_Eptrada,Moneda,Valor
+1,IN,MXN,100
+2,OUT,USD,-200
+3,INVALido,EUR,150
+4,OUT,MXN,0
+5,IN,USD,abc
