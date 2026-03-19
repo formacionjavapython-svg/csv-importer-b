@@ -1,5 +1,7 @@
+package main.java;
+
 public class Main {
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
         final Importer importer = new Importer();
         final ImportResult result = importer.importCsv("transactions.csv");
 
