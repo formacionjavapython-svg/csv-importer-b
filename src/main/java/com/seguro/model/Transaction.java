@@ -1,21 +1,51 @@
-package main.java.com.seguro.model;
+package com.seguro.model;
 
 public class Transaction {
-    private String id;
-    private String date;
-    private Money amount;
-    private String description;
 
-    public Transaction(String id, String date, Money amount, String description) {
-        this.id = id;
-        this.date = date;
-        this.amount = amount;
-        this.description = description;
+    private final String id;
+    private final TxType type;
+    private final Money money;
+    private final String description;
+
+    public Transaction(String id, TxType type, Money money, String description) {
+        if (id == null || id.isBlank()) {
+            throw new IllegalArgumentException("El id no puede estar vacío");
+        }
+        if (type == null) {
+            throw new IllegalArgumentException("El tipo no puede ser nulo");
+        }
+        if (money == null) {
+            throw new IllegalArgumentException("El monto no puede ser nulo");
+        }
+        if (description == null || description.isBlank()) {
+            throw new IllegalArgumentException("La descripción no puede estar vacía");
+        }
+
+        this.id = id.trim();
+        this.type = type;
+        this.money = money;
+        this.description = description.trim();
     }
 
-    // Getters
-    public String getId() { return id; }
-    public String getDate() { return date; }
-    public Money getAmount() { return amount; }
-    public String getDescription() { return description; }
+    public String getId() {
+        return id;
+    }
+
+    public TxType getType() {
+        return type;
+    }
+
+    public Money getMoney() {
+        return money;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{id='" + id + "', type=" + type
+                + ", money=" + money + ", description='" + description + "'}";
+    }
 }

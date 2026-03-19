@@ -1,0 +1,5 @@
+﻿TX001,IN,100.50,MXN,Depósito inicial
+TX002,OUT,25.00,MXN,Compra en tienda
+TX003,IN,200.00,USD,Pago recibido
+TX004,OUT,-10.00,MXN,Monto inválido
+TX005,XXX,80.00,MXN,Tipo inválido
