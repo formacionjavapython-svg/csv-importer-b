@@ -14,6 +14,11 @@ public class Importer {
     private Money cuenta;
 
     public void importar(String file , Money cuenta){
+        if (file.contains("..")){
+            ImportResult revisor = new ImportResult();
+            revisor.crearReporte("Directorio inválido");
+            return;
+        }
         String filePath = file;
         int cantidad = 0;
         boolean sumar = false;
