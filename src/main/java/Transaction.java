@@ -21,8 +21,4 @@ public class Transaction {
         }
         this.descripcion = descripcion;
     }
-
-    private void verificar(){
-        
-    }
 }

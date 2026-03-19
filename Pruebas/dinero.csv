@@ -1,4 +1,4 @@
 id,tipo,monto,moneda,descripcion
-123,suma,100,pesos,pago
-456,resta,200,dolares,cobro
-789,suma,300,euros,pago
+abc,+,100,pesos,pago
+ñuet,-,500,pesos,cobro
+asda,+,300,pesos,pago

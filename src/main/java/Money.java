@@ -12,7 +12,9 @@ public class Money {
     protected int getMoneda(){
         return monto;
     }
+
     protected void setMoneda(int monto){
         this.monto = monto;
     }
+    
 }
