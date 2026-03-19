@@ -1,5 +1,6 @@
 package main.java;
 
-public class TxType {
-
+public enum TxType {
+    IN,
+    OUT
 }
