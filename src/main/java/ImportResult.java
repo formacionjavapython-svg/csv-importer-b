@@ -7,9 +7,9 @@ public class ImportResult {
     BigDecimal totalEgresos = BigDecimal.ZERO;
 
     public void imprimirResumen() {
-        System.out.println("Válidos ✅: " + validos);
-        System.out.println("Inválidos ❌: " + invalidos);
-        System.out.println("Ingresos ❕: " + totalIngresos);
-        System.out.println("Egresos ❗️: " + totalEgresos);
+        System.out.println("Válidos : " + validos);
+        System.out.println("Inválidos : " + invalidos);
+        System.out.println("Ingresos : " + totalIngresos);
+        System.out.println("Egresos : " + totalEgresos);
     }
 }
