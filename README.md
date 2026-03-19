@@ -133,7 +133,7 @@ Total OUT: 50.00
 ---
 
 ## 👨‍💻 Autor
-
+Jose Edgar Garcia Arrieta
 Proyecto desarrollado como laboratorio práctico de Java enfocado en buenas prácticas, seguridad y automatización.
 
 ---
