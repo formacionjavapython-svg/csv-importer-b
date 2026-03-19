@@ -2,9 +2,9 @@ name: Java CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "**" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "**" ]
 
 jobs:
   build:
@@ -20,14 +20,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Compile main classes
+      - name: Compile ALL classes
         run: |
           mkdir -p out
-          javac -d out $(find src -maxdepth 1 -name "*.java") $(find src/dto -name "*.java") $(find src/service -name "*.java")
-
-      - name: Compile test classes
-        run: |
-          javac -d out -cp out $(find src/test -name "*.java")
+          javac -d out $(find src -name "*.java")
+          echo "==== OUTPUT FILES ===="
+          find out
 
       - name: Run tests
         env:
