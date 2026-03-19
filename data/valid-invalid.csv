@@ -1,0 +1,6 @@
+id,type,amount,currency,description
+A001,IN,200,MXN,Ingreso correcto
+A002,OUT,50,MXN,Egreso correcto
+A003,OUT,-10,MXN,Monto invalido
+A004,OTHER,100,MXN,Tipo invalido
+A005,IN,300,MXN,Otro ingreso correcto

@@ -1,0 +1,5 @@
+id,type,amount,currency,description
+B001,IN,100,MXN,Ingreso uno
+B002,IN,200,MXN,Ingreso dos
+B003,OUT,50,MXN,Egreso uno
+B004,OUT,30,MXN,Egreso dos

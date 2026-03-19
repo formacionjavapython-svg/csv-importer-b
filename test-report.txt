@@ -1,0 +1,2 @@
+Pruebas aprobadas: 1
+Pruebas fallidas: 2
