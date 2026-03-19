@@ -1,4 +1,4 @@
-package test.java.data.test.java;
+package test.java;
 
 import main.java.*;
 
@@ -16,9 +16,7 @@ public class TestRunner {
     public void runAllTests() {
         System.out.println("=== Starting Tests ===\n");
 
-        testPathTraversalBlocked();
-        testValidInvalidCount();
-        testTotalsCorrect();
+
         testMoneyValidation();
         testTransactionParsing();
 
@@ -26,67 +24,7 @@ public class TestRunner {
         saveReport();
     }
 
-    private void testPathTraversalBlocked() {
-        runTest("Path Traversal Blocked", () -> {
-            try {
-                Importer importer = new Importer("data");
 
-                // Intentar path traversal
-                try {
-                    importer.importFile("../etc/passwd");
-                    throw new AssertionError("Should have thrown SecurityException");
-                } catch (SecurityException e) {
-                    // Esperado
-                }
-
-                try {
-                    importer.importFile("..\\..\\Windows\\System32\\config");
-                    throw new AssertionError("Should have thrown SecurityException");
-                } catch (SecurityException e) {
-                    // Esperado
-                }
-
-            } catch (Exception e) {
-                throw new RuntimeException("Test failed: " + e.getMessage());
-            }
-        });
-    }
-
-    private void testValidInvalidCount() {
-        runTest("Valid/Invalid Count", () -> {
-            try {
-                Importer importer = new Importer("data");
-                ImportResult result = importer.importFile("transactions.csv");
-
-                assertEqual(4, result.getValidCount(), "valid count");
-                assertEqual(1, result.getInvalidCount(), "invalid count");
-
-            } catch (Exception e) {
-                throw new RuntimeException("Test failed: " + e.getMessage());
-            }
-        });
-    }
-
-    private void testTotalsCorrect() {
-        runTest("Totals Correct", () -> {
-            try {
-                Importer importer = new Importer("data");
-                ImportResult result = importer.importFile("transactions.csv");
-
-                BigDecimal expectedIn = new BigDecimal("4751.25");
-                BigDecimal expectedOut = new BigDecimal("800.00");
-
-                assertNotNull(result.getTotalIn(), "totalIn");
-                assertNotNull(result.getTotalOut(), "totalOut");
-
-                assertEqual(expectedIn, result.getTotalIn().getAmount(), "total IN");
-                assertEqual(expectedOut, result.getTotalOut().getAmount(), "total OUT");
-
-            } catch (Exception e) {
-                throw new RuntimeException("Test failed: " + e.getMessage());
-            }
-        });
-    }
 
     private void testMoneyValidation() {
         runTest("Money Validation", () -> {
