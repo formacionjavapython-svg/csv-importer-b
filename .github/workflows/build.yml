@@ -1,0 +1,38 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - main
+      - Samanta
+  pull_request:
+    branches:
+      - main
+      - Samanta
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Crear carpeta de salida
+        run: mkdir -p out
+
+      - name: Compilar proyecto
+        run: |
+          javac -d out $(find src/main/java -name "*.java") $(find src/test/java -name "*.java")
+
+      - name: Ejecutar pruebas
+        env:
+          IMPORT_BASE_DIR: scripts
+        run: |
+          java -cp out com.seguro.TestRunner

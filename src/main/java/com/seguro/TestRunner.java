@@ -1,5 +1,6 @@
-package com.seguro.model;
+package com.seguro;
 
+import com.seguro.model.ImportResult;
 import com.seguro.service.Importer;
 
 public class TestRunner {
