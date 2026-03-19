@@ -50,7 +50,6 @@ jobs:
           echo "3,INVALido,EUR,150" >> data/errores.csv
           echo "4,OUT,MXN,0" >> data/errores.csv
           echo "5,IN,USD,abc" >> data/errores.csv
-
       - name: Compilar y ejecutar pruebas
         run: |
           echo "🧪 Compilando TestRunner..."
@@ -61,8 +60,7 @@ jobs:
           
           echo "🧪 Ejecutando pruebas..."
           echo "==================================="
-          java -cp "out/production;out/test" com.axity.csvimporter.test.TestRunner
-
+          java -cp "out/production:out/test" com.axity.csvimporter.test.TestRunner
       - name: Subir reporte de pruebas como artifact
         uses: actions/upload-artifact@v4
         with:
