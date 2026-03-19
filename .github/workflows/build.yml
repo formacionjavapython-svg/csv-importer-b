@@ -25,12 +25,13 @@ jobs:
           mkdir -p src/main/java/com/axity/csvimporter/{model,importer,result}
           mkdir -p src/test/java/com/axity/csvimporter/test
           mkdir -p data
-
       - name: Compilar el proyecto
         run: |
-          find src/main/java -name "*.java" > sources.txt
-          javac -d out @sources.txt
-        continue-on-error: false
+          echo "📦 Compilando clases principales..."
+          mkdir -p out/production
+          find src/main/java -name "*.java" > main-sources.txt
+          javac -d out/production @main-sources.txt
+          echo "✅ Clases principales compiladas"
 
       - name: Crear archivos CSV de prueba
         run: |
@@ -52,18 +53,15 @@ jobs:
 
       - name: Compilar y ejecutar pruebas
         run: |
-          echo "🧪 Ejecutando TestRunner..."
-          echo "==================================="
-          
-          # Compilar tests
+          echo "🧪 Compilando TestRunner..."
+          mkdir -p out/test
           find src/test/java -name "*.java" > test-sources.txt
-          javac -cp out -d out @sources.txt @test-sources.txt
+          javac -cp out/production -d out/test @test-sources.txt
+          echo "✅ TestRunner compilado"
           
-          # Ejecutar TestRunner
-          java -cp out com.axity.csvimporter.test.TestRunner
-          
-          # Guardar el código de salida (no falla el workflow si hay pruebas fallidas)
-          echo "✅ Pruebas completadas"
+          echo "🧪 Ejecutando pruebas..."
+          echo "==================================="
+          java -cp "out/production;out/test" com.axity.csvimporter.test.TestRunner
 
       - name: Subir reporte de pruebas como artifact
         uses: actions/upload-artifact@v4
