@@ -1,0 +1,6 @@
+id,type,amount,currency,description
+TX001,IN,1000.5,MXN,Deposito cliente
+TX002,OUT,250,MXN,Compra material
+TX003,IN,500,MXN,Venta local
+TX004,OUT,-50,MXN,Monto invalido
+TX005,ABC,100,MXN,Tipo invalido
