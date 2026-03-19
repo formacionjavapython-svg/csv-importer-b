@@ -1,0 +1,17 @@
+id,tipo,monto,moneda,descripcion
+1,IN,1000.50,MXN,Pago de nómina
+2,OUT,500.00,MXN,Compra de materiales
+3,IN,2500.00,USD,Venta de servicios
+4,OUT,1200.00,USD,Pago a proveedor
+5,IN,300,50,MXN,Monto con coma decimal
+6,OUT,-200.00,MXN,Monto negativo (inválido)
+7,IN,abc,MXN,Monto no numérico
+8,IN,1000,EU,Moneda no válida
+9,OUT,1500.00,,Descripción sin moneda
+10,IN,700.00,MXN,
+11,OUT,800.00,MXN Descripción sin coma (campo faltante)
+12,IN,400.00,MXN,"Descripción con, coma"
+13,IN,9999999999.99,MXN,Monto muy grande
+14,OUT,0.00,MXN,Monto cero (¿válido?)
+15,IN,1000.00,USD,Válido con punto decimal
+16,IN,1000,00,MXN,Válido con coma decimal
