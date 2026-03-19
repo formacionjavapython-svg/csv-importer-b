@@ -1,0 +1,5 @@
+Valid: 3
+Invalid: 1
+Total IN: 300.50
+Total OUT: 50.00
+Errors: [Line: 4,OUT,abc,MXN,Error Error: Invalid amount format: abc]

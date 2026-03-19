@@ -20,15 +20,19 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Compile ALL classes
+      - name: Compile project
         run: |
           mkdir -p out
           javac -d out $(find src -name "*.java")
-          echo "==== OUTPUT FILES ===="
-          find out
 
       - name: Run tests
         env:
           IMPORT_BASE_DIR: .
         run: |
           java -cp out test.TestRunner
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: test-report.txt
