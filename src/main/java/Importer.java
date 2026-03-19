@@ -34,8 +34,10 @@ public class Importer {
             revisor.crearReporte(error);
         }
 
+        parser.remove(0);
+
         for(String element : parser){
-            List<String> object1 = List.of(parser.get(0).split(","));
+            List<String> object1 = List.of(element.split(","));
             if (object1.contains("+")){
                     sumar = true;
                 }
