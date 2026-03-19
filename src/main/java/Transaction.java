@@ -1,4 +1,5 @@
 public class Transaction {
+
     String id;
     TxType type;
     Money amount;
@@ -9,5 +10,12 @@ public class Transaction {
         this.type = type;
         this.amount = amount;
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "ID=" + id +
+                ", tipo=" + type +
+                ", detalle='" + description + "'";
     }
 }
