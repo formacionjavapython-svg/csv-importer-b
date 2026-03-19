@@ -9,10 +9,9 @@ public class ImportResult {
     private BigDecimal totalOut = BigDecimal.ZERO;
     private final List<String> errors = new ArrayList<>();
 
-    /* Esta clase se encarga de almacenar el resultado de la importación, incluyendo
-    el conteo de registros válidos e inválidos, los totales de ingresos y egresos, y
-    una lista de errores encontrados durante la validación.
-    */
+    /* * Almacena el resultado de la importación: conteos,
+     * totales de ingresos/egresos y lista de errores.
+     */
 
     public void addValid(Transaction tx) {
         this.validCount++;
@@ -35,7 +34,7 @@ public class ImportResult {
         System.out.println("Total Ingresos (IN): " + totalIn);
         System.out.println("Total Egresos (OUT): " + totalOut);
         if (!errors.isEmpty()) {
-            System.out.println("Errores:");
+            System.out.println("Errores detectados durante el proceso:");
             errors.forEach(e -> System.out.println(" - " + e));
         }
     }

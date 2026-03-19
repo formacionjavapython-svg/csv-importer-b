@@ -5,47 +5,46 @@ import java.nio.file.Paths;
 
 public class Importer {
 
+    // El metodo processCsv ahora incluye validación de seguridad para prevenir path traversal,
     public ImportResult processCsv(String fileName) throws Exception {
-        // Validación de seguridad contra Path Traversal
-        String baseDirStr = System.getenv("IMPORT_BASE_DIR");
-        if (baseDirStr == null) {
-            throw new IllegalStateException("La variable de entorno IMPORT_BASE_DIR no está configurada.");
-        }
-
-        Path basePath = Paths.get(baseDirStr).toRealPath();
-        Path filePath = basePath.resolve(fileName).normalize();
-
-        if (!filePath.startsWith(basePath)) {
-            throw new SecurityException("Path traversal detected");
-        }
-
+        Path filePath = validateSecurity(fileName);
         ImportResult result = new ImportResult();
 
-        // Pipeline funcional 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath.toFile()))) {
             String line;
             boolean isHeader = true;
-
             while ((line = br.readLine()) != null) {
-                if (isHeader) { isHeader = false; continue; } // Salta encabezados
-
-                try {
-                    // Parseo de columnas
-                    String[] parts = line.split(",");
-                    if (parts.length != 5) {
-                        throw new IllegalArgumentException("Formato de columnas incorrecto");
-                    }
-
-                    // Validacion
-                    Transaction tx = new Transaction(parts[0], parts[1], parts[2], parts[3], parts[4]);
-
-                    // Acumulacion de resultados
-                    result.addValid(tx);
-                } catch (Exception ex) {
-                    result.addInvalid("Error en línea [" + line + "]: " + ex.getMessage());
-                }
+                if (isHeader) { isHeader = false; continue; }
+                processLine(line, result);
             }
         }
         return result;
+    }
+
+    // Validación de seguridad para prevenir path traversal, asegurando que el archivo esté dentro de un directorio permitido.
+    private Path validateSecurity(String fileName) throws Exception {
+        String baseDirStr = System.getenv("IMPORT_BASE_DIR");
+        if (baseDirStr == null) {
+            throw new IllegalStateException("La variable IMPORT_BASE_DIR no está configurada.");
+        }
+        Path basePath = Paths.get(baseDirStr).toRealPath();
+        Path filePath = basePath.resolve(fileName).normalize();
+        if (!filePath.startsWith(basePath)) {
+            throw new SecurityException("Path traversal detected");
+        }
+        return filePath;
+    }
+// El mtodo processLine ahora maneja excepciones de manera más robusta, capturando cualquier error de formato o validación .
+    private void processLine(String line, ImportResult result) {
+        try {
+            String[] parts = line.split(",");
+            if (parts.length != 5) {
+                throw new IllegalArgumentException("Formato de columnas incorrecto");
+            }
+            Transaction tx = new Transaction(parts[0], parts[1], parts[2], parts[3], parts[4]);
+            result.addValid(tx);
+        } catch (Exception ex) {
+            result.addInvalid("Error en línea [" + line + "]: " + ex.getMessage());
+        }
     }
 }
