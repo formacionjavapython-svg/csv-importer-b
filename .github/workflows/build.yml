@@ -20,10 +20,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Compile project
+      - name: Compile main classes
         run: |
           mkdir -p out
-          javac -d out $(find src -name "*.java")
+          javac -d out $(find src -maxdepth 1 -name "*.java") $(find src/dto -name "*.java") $(find src/service -name "*.java")
+
+      - name: Compile test classes
+        run: |
+          javac -d out -cp out $(find src/test -name "*.java")
 
       - name: Run tests
         env:
