@@ -21,7 +21,7 @@ public class Importer {
         return result;
     }
 
-    // Validación de seguridad para prevenir path traversal, asegurando que el archivo esté dentro de un directorio permitido.
+    // Validación de seguridad para prevenir path traversal.
     private Path validateSecurity(String fileName) throws Exception {
         String baseDirStr = System.getenv("IMPORT_BASE_DIR");
         if (baseDirStr == null) {
@@ -34,7 +34,7 @@ public class Importer {
         }
         return filePath;
     }
-// El mtodo processLine ahora maneja excepciones de manera más robusta, capturando cualquier error de formato o validación .
+// El mtodo processLine ahora maneja excepciones de manera más robusta, capturando cualquier error.
     private void processLine(String line, ImportResult result) {
         try {
             String[] parts = line.split(",");
