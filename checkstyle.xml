@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="warning"/>
+    <property name="fileExtensions" value="java"/>
+
+    <!-- Longitud máxima de línea: 120 caracteres -->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+        <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+    </module>
+
+    <!-- Archivo debe terminar con nueva línea -->
+    <module name="NewlineAtEndOfFile"/>
+
+    <!-- No tabs permitidos, solo espacios -->
+    <module name="FileTabCharacter"/>
+
+    <module name="TreeWalker">
+        <!-- Nombres de clases en PascalCase -->
+        <module name="ClassTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+        </module>
+
+        <!-- Constantes en MAYUSCULAS -->
+        <module name="ConstantName"/>
+
+        <!-- Variables locales y parámetros en camelCase -->
+        <module name="LocalFinalVariableName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="LocalVariableName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="MemberName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+
+        <module name="ParameterName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="TypeName">
+            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <!-- Indentación de 4 espacios -->
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="4"/>
+            <property name="throwsIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="4"/>
+            <property name="arrayInitIndent" value="4"/>
+        </module>
+
+        <!-- Métodos no mayores a 30 líneas -->
+        <module name="MethodLength">
+            <property name="tokens" value="METHOD_DEF"/>
+            <property name="max" value="30"/>
+            <property name="countEmpty" value="false"/>
+        </module>
+
+        <!-- Número de parámetros máximo -->
+        <module name="ParameterNumber">
+            <property name="max" value="5"/>
+            <property name="tokens" value="METHOD_DEF"/>
+        </module>
+
+        <!-- Espacios en blanco -->
+        <module name="EmptyForIteratorPad"/>
+        <module name="GenericWhitespace"/>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="OperatorWrap"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAround"/>
+
+        <!-- Modificadores -->
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+
+        <!-- Bloques de código -->
+        <module name="EmptyBlock"/>
+        <module name="LeftCurly"/>
+        <module name="NeedBraces"/>
+        <module name="RightCurly"/>
+
+        <!-- Evitar código muerto -->
+        <module name="UnusedImports"/>
+        <module name="RedundantImport"/>
+        <module name="IllegalImport"/>
+
+        <!-- Buenas prácticas: early returns -->
+        <module name="MultipleVariableDeclarations"/>
+        <module name="OneStatementPerLine"/>
+        <module name="OverloadMethodsDeclarationOrder"/>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+
+        <!-- Validación de null -->
+        <module name="StringLiteralEquality"/>
+        <module name="EqualsAvoidNull"/>
+    </module>
+</module>
