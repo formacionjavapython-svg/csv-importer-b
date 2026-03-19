@@ -7,7 +7,9 @@ Programa en Java que lee un archivo CSV con movimientos financieros y genera un 
 
 -Calcula totales
 
-## Ejecuta
+## Ejecuta java 
+    -cp src/main/java Main
+
 -Registros válidos e inválidos
 
 -Total de ingresos
