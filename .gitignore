@@ -1,0 +1,12 @@
+*.class
+INSTRUCCIONES.txt
+PASO_A_PASO.txt
+REFERENCIA_PRACTICA.txt
+PRUEBAS_SIMPLIFICADAS.txt
+INSTRUCCIONES_GIT.txt
+.DS_Store
+# Evitar archivos temporales de editores
+.vscode/
+.idea/
+*.bin
+*.exe
