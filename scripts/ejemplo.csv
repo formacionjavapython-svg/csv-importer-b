@@ -1,0 +1,5 @@
+1,IN,100.50,MXN,Venta producto A
+2,OUT,50.00,MXN,Compra insumos
+3,IN,200.00,MXN,Servicio prestado
+4,OUT,-10.00,MXN,Error de monto
+5,XYZ,300.00,MXN,Tipo inválido

@@ -1,8 +1,7 @@
-package main.java;
-
-class Main {
-
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        Importer importer = new Importer();
+        ImportResult result = importer.importFromCSV("data/ejemplo.csv");
+        result.printSummary();
     }
 }
