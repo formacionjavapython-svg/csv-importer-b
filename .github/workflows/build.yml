@@ -30,37 +30,54 @@ jobs:
           echo "📦 Compilando clases principales..."
           mkdir -p out/production
           find src/main/java -name "*.java" > main-sources.txt
+          cat main-sources.txt  # Mostrar qué archivos encontramos
           javac -d out/production @main-sources.txt
           echo "✅ Clases principales compiladas"
 
+      - name: Verificar compilación principal
+        run: |
+          echo "📂 Archivos compilados en out/production:"
+          find out/production -type f -name "*.class" | sort
+
       - name: Crear archivos CSV de prueba
         run: |
-          # transacciones.csv (válido)
+          mkdir -p data
           echo "Id,Tipo_Eptrada,Moneda,Valor" > data/transacciones.csv
           echo "1,IN,MXN,100" >> data/transacciones.csv
           echo "2,OUT,USD,200" >> data/transacciones.csv
           echo "3,IN,EUR,150.50" >> data/transacciones.csv
           echo "4,OUT,MXN,75.25" >> data/transacciones.csv
           echo "5,IN,USD,300" >> data/transacciones.csv
-          
-          # errores.csv (con datos inválidos)
           echo "Id,Tipo_Eptrada,Moneda,Valor" > data/errores.csv
           echo "1,IN,MXN,100" >> data/errores.csv
           echo "2,OUT,USD,-200" >> data/errores.csv
           echo "3,INVALido,EUR,150" >> data/errores.csv
           echo "4,OUT,MXN,0" >> data/errores.csv
           echo "5,IN,USD,abc" >> data/errores.csv
-      - name: Compilar y ejecutar pruebas
+
+      - name: Compilar pruebas
         run: |
           echo "🧪 Compilando TestRunner..."
           mkdir -p out/test
           find src/test/java -name "*.java" > test-sources.txt
+          cat test-sources.txt  # Mostrar qué archivos de prueba encontramos
           javac -cp out/production -d out/test @test-sources.txt
           echo "✅ TestRunner compilado"
-          
+
+      - name: Verificar compilación de pruebas
+        run: |
+          echo "📂 Archivos compilados en out/test:"
+          find out/test -type f -name "*.class" | sort
+
+      - name: Ejecutar pruebas
+        run: |
           echo "🧪 Ejecutando pruebas..."
           echo "==================================="
+          echo "📂 Classpath: out/production:out/test"
+          ls -la out/production/com/axity/csvimporter/ || echo "No existe out/production/com/axity/csvimporter/"
+          ls -la out/test/com/axity/csvimporter/test/ || echo "No existe out/test/com/axity/csvimporter/test/"
           java -cp "out/production:out/test" com.axity.csvimporter.test.TestRunner
+
       - name: Subir reporte de pruebas como artifact
         uses: actions/upload-artifact@v4
         with:
