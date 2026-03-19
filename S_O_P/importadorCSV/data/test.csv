@@ -1,0 +1,7 @@
+"ID","tipo_entrada","moneda","valor","descripcion"
+"1","in","MXN","100.50","Venta de producto"
+"2","out","MXN","50.00","Compra de insumos"
+"3","in","USD","25.00","Servicio profesional"
+"4","out","USD","10.00","Pago de hosting"
+"5","mal","MXN","-100","Tipo inválido"
+"6","in","MXN","-50","Monto negativo"

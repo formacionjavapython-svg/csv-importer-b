@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <module name="TreeWalker">
+        <!-- Longitud de línea máxima 120 -->
+        <module name="LineLength">
+            <property name="max" value="120"/>
+        </module>
+
+        <!-- Métodos no mayores a 30 líneas -->
+        <module name="MethodLength">
+            <property name="max" value="30"/>
+        </module>
+
+        <!-- PascalCase para clases -->
+        <module name="TypeName"/>
+
+        <!-- camelCase para métodos -->
+        <module name="MethodName"/>
+
+        <!-- Indentación 4 espacios -->
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+        </module>
+
+        <!-- Evitar imports con * -->
+        <module name="AvoidStarImport"/>
+    </module>
+</module>
