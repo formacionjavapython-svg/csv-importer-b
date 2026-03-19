@@ -1,0 +1,7 @@
+id,tipo,monto,moneda,descripcion
+1,IN,100,MXN,Abono inicial
+2,OUT,200,USD,Pago de servicios
+3,IN,1500.50,MXN,Venta de producto
+4,ERROR,300,EUR,Fallo intencional por tipo invalido
+5,OUT,,MXN,Fallo intencional por monto vacio
+6,IN,50,MXN,Reembolso menor

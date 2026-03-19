@@ -1,0 +1,54 @@
+name: CI/CD Pipeline Java Puro
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-test-analyze:
+    name: Build, Test & Security
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 3. Inicializar CodeQL (SAST)
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java
+
+      - name: 4. Compilar código Java
+        run: |
+          mkdir -p out
+          javac -d out src/*.java
+
+      - name: 5. Ejecutar Pruebas (TestRunner)
+        env:
+          # Configuramos la ruta segura apuntando a la carpeta Imports del repositorio
+          IMPORT_BASE_DIR: ${{ github.workspace }}/Imports
+        run: java -cp out TestRunner
+
+      - name: 6. Descargar y ejecutar Checkstyle
+        run: |
+          wget -qO checkstyle.jar https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.14.2/checkstyle-10.14.2-all.jar
+          java -jar checkstyle.jar -c checkstyle.xml src/*.java
+
+      - name: 7. Ejecutar Análisis CodeQL
+        uses: github/codeql-action/analyze@v3
+
+      - name: 8. Subir Reporte de Pruebas
+        if: always() # Asegura que el reporte se suba incluso si las pruebas fallan
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: test-report.txt
+          retention-days: 30
