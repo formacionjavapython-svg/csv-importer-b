@@ -1,0 +1,4 @@
+id,type,amount,currency,description
+1,IN,500.00,MXN,Deposito Quincena
+2,OUT,150.50,MXN,Pago de Internet
+3,IN,200.00,MXN,Venta de dulces
