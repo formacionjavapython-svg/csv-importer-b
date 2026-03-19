@@ -1,0 +1,4 @@
+1,IN,100.50,MXN,Salario
+2,OUT,50.00,MXN,Comida
+3,IN,200.00,MXN,Bono
+4,OUT,abc,MXN,Error
