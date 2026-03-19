@@ -7,23 +7,42 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Importer {
+
+    private static final String BASE_DIR = "C:\\Repos\\Java\\formacionjavapython\\csv-importer-b\\data\\";
+
     public ImportResult importCSV(String filePath) {
-        System.out.println("Importando: " + filePath);
+        System.out.println("==========================================");
+        System.out.println("SOLICITUD: " + filePath);
+        System.out.println("==========================================");
+
         ImportResult result = new ImportResult();
 
-        File file = new File(filePath);
-        if (!file.exists()) {
-            result.agregaError("Archivo no encontrado: " + filePath);
+        // Validar path traversal
+        if (filePath.contains("..") || filePath.contains("/") ||
+                filePath.contains("\\") || filePath.contains(":")) {
+            result.agregaError("ACCESO DENEGADO: Caracteres no permitidos");
             return result;
         }
 
+        String rutaCompleta = BASE_DIR + filePath;
+        System.out.println("Buscando en: " + rutaCompleta);
+
+        File file = new File(rutaCompleta);
+
+        if (!file.exists()) {
+            result.agregaError("Archivo NO encontrado: " + filePath);
+            return result;
+        }
+
+        System.out.println("Archivo encontrado. Leyendo contenido...");
+
         try {
-            List<String> lines = Files.readAllLines(Paths.get(filePath));
-            System.out.println("Lineas leidas: " + lines.size());
+            // Intentar leer el archivo
+            List<String> lines = Files.readAllLines(Paths.get(rutaCompleta));
+            System.out.println("Líneas leídas: " + lines.size());
 
             for (int i = 0; i < lines.size(); i++) {
                 String line = lines.get(i).trim();
-
                 if (line.isEmpty()) continue;
 
                 if (i == 0 && line.toLowerCase().contains("id")) {
@@ -35,7 +54,14 @@ public class Importer {
             }
 
         } catch (IOException e) {
-            result.agregaError("Error leyendo archivo: " + e.getMessage());
+            // AHORA VEMOS EL ERROR REAL
+            String errorDetallado = "Error leyendo archivo: " + e.getClass().getSimpleName() +
+                    " - " + e.getMessage();
+            System.out.println("Error: " + errorDetallado);
+            result.agregaError(errorDetallado);
+
+            // Mostrar más detalles
+            e.printStackTrace(); // Esto muestra la traza completa del error
         }
 
         return result;
