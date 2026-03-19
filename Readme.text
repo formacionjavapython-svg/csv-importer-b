@@ -1,0 +1,12 @@
+PROYECTO: IMPORTER - LABORATORIO JAVA
+ESTUDIANTE: B21_Nayib de la Cruz Marquez
+
+INSTRUCCIONES DE EJECUCIÓN:
+1. Asegúrese de tener el SDK 17 configurado.
+2. Configure la Variable de Entorno: IMPORT_BASE_DIR=data
+3. Ejecute la clase TestRunner.java para procesar el archivo transacciones.csv.
+
+LOGICA APLICADA:
+- Uso de BigDecimal para precisión monetaria.
+- Validación de rutas para seguridad (Anti-Path Traversal).
+- Manejo de tipos de transacciones mediante Enum (TxType).
