@@ -1,0 +1,4 @@
+id,type,amount,currency
+1,IN,500.00,USD
+2,OUT,100.00,USD
+3,IN,250.00,USD
