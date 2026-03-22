@@ -23,7 +23,7 @@ public class Importer {
                 final String[] col = line.split(",");
                 final TxType type = TxType.valueOf(col[1].toUpperCase());
                 final Money money = new Money(col[2], col[3]);
-                final Transaction tx = new Transaction(col[0], type, money);
+                final Transaction tx = new Transaction(type, money);
 
                 result.setValidCount(result.getValidCount() + 1);
                 if (tx.getType() == TxType.IN) {

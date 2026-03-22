@@ -1,10 +1,9 @@
 public final class Transaction {
-    private final String id;
     private final TxType type;
     private final Money money;
 
-    public Transaction(String id, TxType type, Money money) {
-        this.id = id;
+    public Transaction( TxType type, Money money) {
+
         this.type = type;
         this.money = money;
     }
