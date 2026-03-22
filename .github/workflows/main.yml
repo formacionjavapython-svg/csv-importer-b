@@ -1,0 +1,25 @@
+name: Java CI
+on:
+  push:
+    branches: [ "main", "B21_NayibMarquez/CSV-IMPORTER-B" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Run Test
+        # Aquí es donde estaba el error. Ahora lo busca directo.
+        run: |
+          javac -d out src/*.java
+          java -cp out TestRunner
+        env:
+          IMPORT_BASE_DIR: ${{ github.workspace }}

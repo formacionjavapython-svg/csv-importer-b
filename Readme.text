@@ -1,6 +1,21 @@
+<<<<<<< HEAD
+PROYECTO: IMPORTER - LABORATORIO JAVA
+ESTUDIANTE: B21_Nayib de la Cruz Marquez
+
+INSTRUCCIONES DE EJECUCIÓN:
+1. Asegúrese de tener el SDK 17 configurado.
+2. Configure la Variable de Entorno: IMPORT_BASE_DIR=data
+3. Ejecute la clase TestRunner.java para procesar el archivo transacciones.csv.
+
+LOGICA APLICADA:
+- Uso de BigDecimal para precisión monetaria.
+- Validación de rutas para seguridad (Anti-Path Traversal).
+- Manejo de tipos de transacciones mediante Enum (TxType).
+=======
 📍 Importer con Manejo de Excepciones Personalizado. B21_Nayib de la Cruz Marquez 📍 
 -Manejo de Errores: Se implementó la clase personalizada ImportException para capturar errores específicos durante la lectura del CSV.
 -Seguridad: Validación de rutas para evitar ataques de Path Traversal.
 -Lógica de Negocio: Procesamiento de transacciones con cálculo automático de totales (Ingresos: 750.00 / Egresos: 100.00).
 -Arquitectura: Separación de responsabilidades en clases Importer, Transaction, Money y ImportResult.
 -Configuración: El proyecto requiere la variable de entorno IMPORT_BASE_DIR apuntando a la carpeta data.
+>>>>>>> 9b6df89a2299982d679daada700f55ff0526305a

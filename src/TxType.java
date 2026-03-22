@@ -1,3 +1,3 @@
 public enum TxType {
-    IN, OUT, ERROR
+    IN, OUT
 }
