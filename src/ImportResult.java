@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.math.BigDecimal;
 
 /** Resultados del procesamiento. */
@@ -14,12 +13,3 @@ public class ImportResult {
     public final BigDecimal getTotalOut() { return totalOut; }
     public final void setTotalOut(final BigDecimal t) { this.totalOut = t; }
 }
-=======
-import java.math.BigDecimal;
-
-public class ImportResult {
-    public int validCount = 0;
-    public BigDecimal totalIn = BigDecimal.ZERO;
-    public BigDecimal totalOut = BigDecimal.ZERO;
-}
->>>>>>> 9b6df89a2299982d679daada700f55ff0526305a
