@@ -1,12 +1,13 @@
+/** Clase que representa una transacción. */
 public class Transaction {
-    private TxType type;
-    private Money money;
+    private final TxType type;
+    private final Money money;
 
-    public Transaction(TxType type, Money money) {
+    public Transaction(final TxType type, final Money money) {
         this.type = type;
         this.money = money;
     }
 
-    public TxType getType() { return type; }
-    public Money getMoney() { return money; }
+    public final TxType getType() { return type; }
+    public final Money getMoney() { return money; }
 }

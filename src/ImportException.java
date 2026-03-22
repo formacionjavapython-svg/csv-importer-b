@@ -1,5 +1,6 @@
+/** Excepción para el control de errores. */
 public class ImportException extends Exception {
-    public ImportException(String message) {
+    public ImportException(final String message) {
         super(message);
     }
 }
