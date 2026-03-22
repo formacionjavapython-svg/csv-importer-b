@@ -1,7 +1,9 @@
 name: Java CI
 on:
   push:
-    branches: [ "B21_NayibMarquez/CSV-IMPORTER-B" ]
+    branches: [ "main", "B21_NayibMarquez/CSV-IMPORTER-B" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -15,9 +17,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Run Test
-        # Esto ejecuta tu TestRunner para generar el reporte
+        # Aquí es donde estaba el error. Ahora lo busca directo.
         run: |
           javac -d out src/*.java
-          java -cp out com.axity.TestRunner
+          java -cp out TestRunner
         env:
           IMPORT_BASE_DIR: ${{ github.workspace }}
