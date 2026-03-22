@@ -1,0 +1,7 @@
+id,type,amount,currency,description
+1,IN,1000.50,MXN,Salario
+2,OUT,250.00,MXN,Comida
+3,IN,300.00,MXN,Venta
+4,OUT,-50.00,MXN,ErrorMonto
+5,TEST,100.00,MXN,TipoInvalido
+6,IN,abc,MXN,MontoInvalido
