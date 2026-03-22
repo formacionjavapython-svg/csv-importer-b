@@ -1,4 +1,6 @@
-/** Clase que representa una transacción. */
+/**
+ * Representa una transacción individual del CSV.
+ */
 public class Transaction {
     private final TxType type;
     private final Money money;
@@ -8,6 +10,11 @@ public class Transaction {
         this.money = money;
     }
 
-    public final TxType getType() { return type; }
-    public final Money getMoney() { return money; }
+    public final TxType getType() {
+        return type;
+    }
+
+    public final Money getMoney() {
+        return money;
+    }
 }
