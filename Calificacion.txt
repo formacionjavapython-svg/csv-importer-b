@@ -1,0 +1,21 @@
+10
+
+1. Creación de la rama (1 pts)
+1 : Crea correctamente la rama con nombre adecuado
+
+2. Creación del proyecto de Java (1.5 pts)
+1.5: Proyecto correctamente configurado y organizado
+
+3. Clase y atributos (2 pts)
+2: Clase bien definida y atributos correctos
+
+4. Métodos (2 pts)
+2.5: Métodos funcionales, con comentarios y buen modularidad
+1.5: Métodos funcionales, pero sin comentarios o poco claro
+
+
+5. Compilación y funcionalidad (3 pts)
+3: Compila sin errores y funciona correctamente, cumpliendo todos los requerimientos
+
+6. Extras 
+0.3 por cada actividad extra que se haya realizado (por ejemplo: diagramas, pipelines, documentación extra)
